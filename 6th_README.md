@@ -1,4 +1,4 @@
-## 🧰 Assignment 6 - Linux Process Manager Scripts
+## Assignment 6 - Linux Process Manager Scripts
 
 This Folder contains Process Manager utilities that help monitor, list, and manage Linux processes using simple command-line options.
 
@@ -11,7 +11,7 @@ It includes:
 Both scripts rely on Linux commands like ps, grep, and awk to extract and process running system information.
 
 ---
-### ⚙️ 1. otProcessManager.sh — Advanced Process Manager
+### 1. otProcessManager.sh — Advanced Process Manager
 
 The advanced version of process management tool.
 
