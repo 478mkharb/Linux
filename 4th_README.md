@@ -1,4 +1,4 @@
-### 📘 Text Editing & Template Engine Scripts
+## 📘 Text Editing & Template Engine Scripts
 
 - This repository contains two useful Bash utilities:
 
