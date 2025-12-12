@@ -1,131 +1,141 @@
-## 📘 File Editing & Template Processing Utilities
+### 📘 Text Editing & Template Engine Scripts
 
-Two simple but powerful Bash scripts that help you modify files and replace variables in templates with ease.
+- This repository contains two useful Bash utilities:
 
+- otTextEditor.sh – A lightweight text-file editing toolkit
+
+- tePlateEngine.sh – A simple template processing engine using key=value replacements
+
+- Both scripts are designed to simplify common DevOps and Linux automation tasks.
+  
+---
+### 🛠️ 1. otTextEditor.sh — Text Editing Script
+
+A Bash script built around sed to perform common text-editing operations such as inserting, updating, and deleting lines.
+
+###🔹 Supported Operations
+Action	Description
+```
+echo "./otTextEditor.sh addLineTop <file> <line>"
+echo "./otTextEditor.sh addLineBottom <file> <line>"
+echo "./otTextEditor.sh addLineAt <file> <linenumber> <line>"
+echo "./otTextEditor.sh updateFirstWord  <file> <word> <word2>"
+echo "./otTextEditor.sh updateAllWords <file> <word> <word2>"
+echo "./otTextEditor.sh insertWord <file> <word1> <word2> <word-to-be-inserted>"
+echo "./otTextEditor.sh deleteLine <file> <line no>"
+echo "./otTextEditor.sh deleteLine <file> <line no> <word>"
+```
+---
+###🔹 Usage
+#### ➤ Add a line at the top
+```bash
+./otTextEditor.sh addLineTop file.txt "Hello World"
+```
+
+#### ➤ Add a line at the bottom
+```
+./otTextEditor.sh addLineBottom file.txt "End of file"
+```
+
+#### ➤ Add a line at a specific line number
+```
+./otTextEditor.sh addLineAt file.txt 4 "Line inserted at number 4"
+```
+
+#### ➤ Update first occurrence of a word
+```
+./otTextEditor.sh updateFirstWord file.txt old new
+```
+
+#### ➤ Update all words
+```
+./otTextEditor.sh updateAllWords file.txt error warning
+```
+
+#### ➤ Insert word after match
+```
+./otTextEditor.sh insertWord file.txt hello world InsertedText
+```
+
+#### ➤ Delete a line
+```
+./otTextEditor.sh deleteLine file.txt 7
+```
+
+#### ➤ Delete line only if it contains a word
+```
+./otTextEditor.sh deleteLine file.txt 7 keyword
+```
+---
+###🔹 Script Concepts Used
+
+- sed for all text transformation
+
+- Functions (addLineTop, updateAllWords, etc.)
+
+- case statement for command selection
+
+- shift for argument repositioning
+
+- Conditional checks to validate inputs
+  
 ---
 
-## 📝 1. File Editing Utility Script
+### 🛠️ 2. tePlateEngine.sh — Template Processor
 
-A Bash script that performs common file editing operations such as adding lines, updating text, inserting words, and deleting lines using sed.
+A simple template engine that replaces placeholders inside a template file using key=value arguments.
 
-## 🚀 Features
-###     🔹 Features
+###🔹 Features
 
--   ➕ Add a line at the top of a file
+- Replace multiple variables at once
 
--   ➕ Add a line at the bottom
+- Perfect for config generation, CI/CD pipelines
 
--   ➕ Insert a line at a specific line number
+- Accepts unlimited key=value pairs
 
--   🔄 Replace first occurrence of a word
-
--   🔁 Replace all occurrences
-
--   📝 Insert a word after a match
-
--   ❌ Delete lines (entire line or only if it contains a word)
-
-## 📂 What Concepts This Script Uses
-### 🧩 Functions
-
-Each operation is isolated into a function:
+- Works with any text-based template
+  
+---
+###🔹 Usage
 ```
-addLineTop
-
-addLineBottom
-
-addLineAt
-
-updateFirstWord
-
-updateAllWords
-
-insertWord
-
-deleteLine
+./tePlateEngine.sh template.txt name=Mukesh city=Delhi role=DevOps
 ```
-🧩 Case Statement
 
-The action name determines which function is executed.
-
-🧩 Sed
-
-Powerful stream editor used for:
-
-Inserting text
-
-Deleting lines
-
-Word replacement
-
-Pattern matching
-
-Zero-occurrence (first-only) replacement
-
-🧩 Command Argument Shifting
-
-shift is used to reposition arguments after reading the action.
-
-🔧 Usage Examples
-➤ Add a line at the top
-./script.sh addLineTop file.txt "Hello World"
-
-➤ Add a line at the bottom
-./script.sh addLineBottom file.txt "This is the last line"
-
-➤ Add a line at line number 5
-./script.sh addLineAt file.txt 5 "Inserted at line 5"
-
-➤ Replace the first occurrence of a word
-./script.sh updateFirstWord file.txt apple mango
-
-➤ Replace all occurrences of a word
-./script.sh updateAllWords file.txt error warning
-
-➤ Insert a word after a match
-./script.sh insertWord file.txt hello world insertedWord
-
-➤ Delete a line (example: delete line 8):
-./script.sh deleteLine file.txt 8
-
-➤ Delete line if it contains a word:
-./script.sh deleteLine file.txt 8 keyword
-
-📝 2. Template Variable Replacement Script
-
-A simple script to replace placeholders in a template file using key=value pairs.
-
-🚀 Features
-
-✔ Replace variables dynamically
-✔ Unlimited key=value pairs
-✔ Useful for config files, HTML templates, Kubernetes manifests, etc.
-
-🔧 Usage
-./replace.sh template.txt name=Mukesh city=Delhi role=DevOps
-
-Example Template:
-Hello {{name}},
-Welcome to {{city}}.
+###🔹 Example
+Template File (template.txt)
+```
+Hello {{name}}
+Welcome to {{city}}
 Role: {{role}}
+```
 
-After running script:
-Hello Mukesh,
-Welcome to Delhi.
+After Running Script
+```
+Hello Mukesh
+Welcome to Delhi
 Role: DevOps
+```
+---
+###🔹 Script Concepts Used
 
-🧩 What This Script Uses
-✔ Argument parsing
+- Looping through arguments
 
-$1 = template file
-Remaining arguments = key=value style pairs
+- key=value parsing:
 
-✔ Parameter expansion
+```
+${pair%%=*} → key
 
-key="${pair%%=*}" → extract text before "="
+${pair#*=} → value
+```
+- Replacing strings globally using sed
 
-val="${pair#*=}" → extract text after "="
-
-✔ Sed replacement
-
-Replaces all occurrences of each key with value.
+- Storing file contents in variables
+  
+---
+### 📦 Folder Structure
+```
+Assignment4/
+├── otTextEditor.sh
+├── tePlateEngine.sh
+└── README.md
+```
