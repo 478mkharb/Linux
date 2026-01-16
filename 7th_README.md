@@ -1,4 +1,4 @@
-# Maven Automation Script
+## Maven Automation Script
 
 This script automates common Maven tasks such as building artifacts, installing them into the local repository, running static code analysis, generating reports, executing plugins, and deploying the application to Tomcat. It also verifies and installs required tools such as Java, Maven, and Tomcat if they are missing.
 
