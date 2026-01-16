@@ -1,4 +1,4 @@
-# 🔐 SSH Config Manager Script
+### 🔐 SSH Config Manager Script
 
 This script automates the creation, updating, deletion, and listing of SSH configuration entries inside:
 
